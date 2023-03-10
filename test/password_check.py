@@ -19,6 +19,7 @@ encoded_hash = pass_from_db.encode('utf-8')  #encoding needed to array of bytes
 
 # local password to compare with
 passwd = 'Almaalma1'
+print(passwd)
 encoded_passwd = passwd.encode('utf-8')  #encoding needed to array of bytes
 
 # no red stuff if True:
