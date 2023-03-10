@@ -9,3 +9,4 @@ def query(sql):
     return rows
 
 print(query('SELECT * FROM users'))
+print(query("SELECT username FROM users WHERE username LIKE 'cs%'"))
