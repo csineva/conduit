@@ -16,7 +16,6 @@ pass_from_db = query("SELECT password FROM users WHERE username = 'alma'")[0][0]
 print(pass_from_db)
 encoded_hash = pass_from_db.encode('utf-8')  #encoding needed to array of bytes
 
-
 # local password to compare with
 passwd = 'Almaalma1'
 print(passwd)
