@@ -9,4 +9,7 @@ def query(sql):
     return rows
 
 print(query('SELECT * FROM users'))
-print(query("SELECT username FROM users WHERE username LIKE 'cs%'"))
+print(query("SELECT username, email FROM users WHERE username LIKE '%user2'"))
+print()
+username, email = query("SELECT username, email FROM users WHERE username = 'testuser2'")[0]
+print(f'A felhasználó neve: {username}\nA felhasználo e-mail címe: {email}')
