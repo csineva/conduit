@@ -29,7 +29,7 @@ browser = webdriver.Chrome(service=service, options=options)
 URL = "http://localhost:1667/#/"
 browser.get(URL)
 
-# user registration, returns with registration response text
+# user registration function, returns with registration response text
 def sign_up(user, email, password):
     find = browser.find_element
 
