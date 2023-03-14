@@ -29,17 +29,17 @@ browser = webdriver.Chrome(service=service, options=options)
 URL = "http://localhost:1667/#/"
 browser.get(URL)
 
-
+# user registration, returns with registration response text
 def sign_up(user, email, password):
     find = browser.find_element
 
     register = find(By.LINK_TEXT, "Sign up")
     register.click()
 
-    signup_page_check = find(By.TAG_NAME, "h1").text
+    signup_page_check = find(By.TAG_NAME, "h1").text  #let's check if we are on the right spot
     assert signup_page_check == 'Sign up'
 
-    input_username = find(By.XPATH, '//input[@placeholder="Username"]')
+    input_username = find(By.XPATH, '//input[@placeholder="Username"]')  # let's dance!
     input_email = find(By.XPATH, '//input[@placeholder="Email"]')
     input_password = find(By.XPATH, '//input[@placeholder="Password"]')
     submit_btn = find(By.XPATH, '//button[@class="btn btn-lg btn-primary pull-xs-right"]')
@@ -57,6 +57,7 @@ def sign_up(user, email, password):
     return f'{reg_result} {reg_info}'
 
 
+# database query function, returns with sql result
 def query_db(sql):
     conn = pg.connect("dbname='realworld' user='user' password='userpassword' host='localhost' port='54320'")
     cur = conn.cursor()
@@ -66,6 +67,7 @@ def query_db(sql):
     return rows
 
 
+# 'valid_...' keys as expected result
 test_data = [
     {
         'user': '',
@@ -103,13 +105,14 @@ responses = {
 }
 
 for data in test_data:
-    email_exists = (query_db(f"SELECT email FROM users WHERE email = '{data['email']}'"))
+    email_exists = (query_db(f"SELECT email FROM users WHERE email = '{data['email']}'"))  # check database if email exists already
     signup_result = sign_up(data['user'], data['email'], data['password'])
 
     print(f"user: {data['user']}, mail: {data['email']}, pass: {data['password']}")
     print(signup_result)
     print()
 
+    # responses check if fits expected results
     if not data['valid_user']:
         assert signup_result == responses['invalid_username']
     elif not data['valid_email']:
