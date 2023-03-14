@@ -54,7 +54,7 @@ def sign_up(user, email, password):
     confirm_btn = find(By.XPATH, '//button[@class="swal-button swal-button--confirm"]')
     confirm_btn.click()
 
-    return f'{reg_result}\n{reg_info}'
+    return f'{reg_result} {reg_info}'
 
 
 def query_db(sql):
@@ -94,12 +94,12 @@ test_datas = [
 ]
 
 responses = {
-    'invalid_username': 'Registration failed!\nUsername field required.',
-    'invalid_email': 'Registration failed!\nEmail must be a valid email.',
-    'invalid_password': 'Registration failed!\nPassword must be 8 characters long '
+    'invalid_username': 'Registration failed! Username field required.',
+    'invalid_email': 'Registration failed! Email must be a valid email.',
+    'invalid_password': 'Registration failed! Password must be 8 characters long '
                         'and include 1 number, 1 uppercase letter, and 1 lowercase letter.',
-    'email_taken': 'Registration failed!\nEmail already taken.',
-    'success': 'Welcome!\nYour registration was successful!',
+    'email_taken': 'Registration failed! Email already taken.',
+    'success': 'Welcome! Your registration was successful!',
 }
 
 for data in test_datas:
