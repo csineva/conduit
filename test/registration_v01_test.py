@@ -66,7 +66,7 @@ def query_db(sql):
     return rows
 
 
-test_datas = [
+test_data = [
     {
         'user': '',
         'valid_user': False,
@@ -102,7 +102,7 @@ responses = {
     'success': 'Welcome! Your registration was successful!',
 }
 
-for data in test_datas:
+for data in test_data:
     email_exists = (query_db(f"SELECT email FROM users WHERE email = '{data['email']}'"))
     signup_result = sign_up(data['user'], data['email'], data['password'])
 
