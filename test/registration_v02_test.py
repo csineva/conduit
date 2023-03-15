@@ -71,7 +71,6 @@ def query_db(sql):
 test_data = [
     {
         'user': '',
-        'valid_user': False,
         'email': 'cs@g.gg',
         'valid_email': True,
         'password': 'Almafafa1',
@@ -79,25 +78,39 @@ test_data = [
     },
     {
         'user': 'alma',
-        'valid_user': True,
+        'email': '',
+        'valid_email': False,
+        'password': 'GHkjheeb453',
+        'valid_password': True
+    },
+    {
+        'user': 'körte',
+        'email': 'cs@g.gl',
+        'valid_email': True,
+        'password': '',
+        'valid_password': False
+    },
+    {
+        'user': 'alma',
         'email': 'cs@g.g',
         'valid_email': False,
-        'password': 'Almafafa1',
+        'password': 'GHkjheeb453',
         'valid_password': True
     },
     {
         'user': 'alma',
-        'valid_user': True,
         'email': 'cs@g.gl',
         'valid_email': True,
-        'password': 'Almafafa1',
-        'valid_password': True
+        'password': 'zokni',
+        'valid_password': False
     }
 ]
 
 responses = {
-    'invalid_username': 'Registration failed! Username field required.',
+    'empty_username': 'Registration failed! Username field required.',
+    'empty_email': 'Registration failed! Email field required.',
     'invalid_email': 'Registration failed! Email must be a valid email.',
+    'empty_password': 'Registration failed! Password field required.',
     'invalid_password': 'Registration failed! Password must be 8 characters long '
                         'and include 1 number, 1 uppercase letter, and 1 lowercase letter.',
     'email_taken': 'Registration failed! Email already taken.',
@@ -105,7 +118,7 @@ responses = {
 }
 
 for data in test_data:
-    email_exists = (query_db(f"SELECT email FROM users WHERE email = '{data['email']}'"))  # check database if email exists already
+    email_exists = query_db(f"SELECT email FROM users WHERE email = '{data['email']}'")  # check database if email exists already
     signup_result = sign_up(data['user'], data['email'], data['password'])
 
     print(f"user: {data['user']}, mail: {data['email']}, pass: {data['password']}")
@@ -113,16 +126,19 @@ for data in test_data:
     print()
 
     # responses check if fits expected results
-    if not data['valid_user']:
-        assert signup_result == responses['invalid_username']
+    if not data['user']:
+        assert signup_result == responses['empty_username']
+    elif not data['email']:
+        assert signup_result == responses['empty_email']
+    elif not data['password']:
+        assert signup_result == responses['empty_password']
     elif not data['valid_email']:
         assert signup_result == responses['invalid_email']
+    elif email_exists:
+        assert signup_result == responses['email_taken']
     elif not data['valid_password']:
         assert signup_result == responses['invalid_password']
     else:
-        if email_exists:
-            assert signup_result == responses['email_taken']
-        else:
-            assert signup_result == responses['success']
+        assert signup_result == responses['success']
 
 browser.close()
