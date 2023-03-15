@@ -30,6 +30,7 @@ browser.implicitly_wait(10)
 URL = "http://localhost:1667/#/"
 browser.get(URL)
 
+
 # user registration function, returns with registration response text
 def sign_up(user, email, password):
     find = browser.find_element
@@ -99,10 +100,10 @@ test_data = [
     },
     {
         'user': 'alma',
-        'email': 'cs@g.gl',
+        'email': 'cs@g.gl',  # email valid, but exists in db
         'valid_email': True,
-        'password': 'zokni',
-        'valid_password': False
+        'password': 'HDirfkvid432',
+        'valid_password': True
     },
     {
         'user': 'alma',
