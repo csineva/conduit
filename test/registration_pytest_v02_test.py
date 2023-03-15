@@ -122,6 +122,7 @@ class TestRegistration(object):
 
         return f'{reg_result} {reg_info}'
 
+
     def query_db(self, sql):
         conn = pg.connect("dbname='realworld' user='user' password='userpassword' host='localhost' port='54320'")
         cur = conn.cursor()
