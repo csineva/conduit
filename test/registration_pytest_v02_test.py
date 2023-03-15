@@ -51,10 +51,10 @@ test_data = [
     },
     {
         'user': 'alma',
-        'email': 'cs@g.gl',
+        'email': 'cs@g.gl',  # email valid, but exists in db
         'valid_email': True,
-        'password': 'zokni',
-        'valid_password': False
+        'password': 'HDirfkvid432',
+        'valid_password': True
     },
     {
         'user': 'alma',
@@ -71,7 +71,6 @@ test_data = [
         'valid_password': False
     }
 ]
-
 
 responses = {
     'empty_username': 'Registration failed! Username field required.',
@@ -96,8 +95,10 @@ class TestRegistration(object):
         URL = "http://localhost:1667/#/"
         self.browser.get(URL)
 
+
     def teardown_method(self):
         self.browser.quit()
+
 
     def sign_up(self, user, email, password):
         find = self.browser.find_element
@@ -147,7 +148,6 @@ class TestRegistration(object):
         # let's check if we really are on the sign-in page
         sign_in_page_check = self.browser.find_element(By.TAG_NAME, "h1").text
         assert sign_in_page_check == 'Sign in'
-
 
 
     def test_fill(self):
