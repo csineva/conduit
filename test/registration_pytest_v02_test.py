@@ -55,6 +55,20 @@ test_data = [
         'valid_email': True,
         'password': 'zokni',
         'valid_password': False
+    },
+    {
+        'user': 'alma',
+        'email': 'cs@g.ga',
+        'valid_email': True,
+        'password': 'zokni',
+        'valid_password': False
+    },
+    {
+        'user': 'alma',
+        'email': 'cs@g.ga',
+        'valid_email': True,
+        'password': 'zokni',
+        'valid_password': False
     }
 ]
 
