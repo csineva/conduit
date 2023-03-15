@@ -25,6 +25,7 @@ options = Options()
 options.add_experimental_option("detach", True)
 options.add_argument("--lang=en")
 browser = webdriver.Chrome(service=service, options=options)
+browser.implicitly_wait(10)
 
 URL = "http://localhost:1667/#/"
 browser.get(URL)
@@ -48,8 +49,7 @@ def sign_up(user, email, password):
     input_password.send_keys(password)
     submit_btn.click()
 
-    reg_result = WebDriverWait(browser, 5).until(
-        EC.presence_of_element_located((By.XPATH, '//div[@class="swal-title"]'))).text
+    reg_result = find(By.XPATH, '//div[@class="swal-title"]').text
     reg_info = find(By.XPATH, '//div[@class="swal-text"]').text
     confirm_btn = find(By.XPATH, '//button[@class="swal-button swal-button--confirm"]')
     confirm_btn.click()
@@ -100,6 +100,20 @@ test_data = [
     {
         'user': 'alma',
         'email': 'cs@g.gl',
+        'valid_email': True,
+        'password': 'zokni',
+        'valid_password': False
+    },
+    {
+        'user': 'alma',
+        'email': 'cs@g.ga',
+        'valid_email': True,
+        'password': 'zokni',
+        'valid_password': False
+    },
+    {
+        'user': 'alma',
+        'email': 'cs@g.ga',
         'valid_email': True,
         'password': 'zokni',
         'valid_password': False
