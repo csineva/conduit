@@ -25,7 +25,7 @@ options = Options()
 options.add_experimental_option("detach", True)
 options.add_argument("--lang=en")
 browser = webdriver.Chrome(service=service, options=options)
-browser.implicitly_wait(10)
+# browser.implicitly_wait(10)
 
 URL = "http://localhost:1667/#/"
 browser.get(URL)
@@ -50,7 +50,8 @@ def sign_up(user, email, password):
     input_password.send_keys(password)
     submit_btn.click()
 
-    reg_result = find(By.XPATH, '//div[@class="swal-title"]').text
+    reg_result = WebDriverWait(browser, 5).until(
+        EC.presence_of_element_located((By.XPATH, '//div[@class="swal-title"]'))).text
     reg_info = find(By.XPATH, '//div[@class="swal-text"]').text
     confirm_btn = find(By.XPATH, '//button[@class="swal-button swal-button--confirm"]')
     confirm_btn.click()
@@ -71,7 +72,7 @@ def query_db(sql):
 # 'valid_...' keys as expected result
 test_data = [
     {
-        'user': '',
+        'user': '',  #empty username
         'email': 'cs@g.gg',
         'valid_email': True,
         'password': 'Almafafa1',
@@ -79,7 +80,7 @@ test_data = [
     },
     {
         'user': 'alma',
-        'email': '',
+        'email': '',  # empty email
         'valid_email': False,
         'password': 'GHkjheeb453',
         'valid_password': True
@@ -88,12 +89,12 @@ test_data = [
         'user': 'körte',
         'email': 'cs@g.gl',
         'valid_email': True,
-        'password': '',
+        'password': '',  # empty password
         'valid_password': False
     },
     {
         'user': 'alma',
-        'email': 'cs@g.g',
+        'email': 'cs@g.g',  # invalid email
         'valid_email': False,
         'password': 'GHkjheeb453',
         'valid_password': True
@@ -107,17 +108,17 @@ test_data = [
     },
     {
         'user': 'alma',
-        'email': 'cs@g.ga',
+        'email': 'a@b.cd',
         'valid_email': True,
-        'password': 'zokni',
+        'password': 'zokni',  # invalid password
         'valid_password': False
     },
     {
         'user': 'alma',
         'email': 'cs@g.ga',
         'valid_email': True,
-        'password': 'zokni',
-        'valid_password': False
+        'password': 'JHHkjshdk12',
+        'valid_password': True
     }
 ]
 
