@@ -1,0 +1,9 @@
+{
+    "empty_username": "Registration failed! Username field required.",
+    "empty_email": "Registration failed! Email field required.",
+    "invalid_email": "Registration failed! Email must be a valid email.",
+    "empty_password": "Registration failed! Password field required.",
+    "invalid_password": "Registration failed! Password must be 8 characters long and include 1 number, 1 uppercase letter, and 1 lowercase letter.",
+    "email_taken": "Registration failed! Email already taken.",
+    "success": "Welcome! Your registration was successful!"
+}
