@@ -12,17 +12,20 @@
 
 
 import psycopg2 as pg
+import bcrypt
 
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 
 # 'valid_...' keys as expected result
 test_data = [
     {
-        'user': '',
+        'user': '',  #empty username
         'email': 'cs@g.gg',
         'valid_email': True,
         'password': 'Almafafa1',
@@ -30,7 +33,7 @@ test_data = [
     },
     {
         'user': 'alma',
-        'email': '',
+        'email': '',  # empty email
         'valid_email': False,
         'password': 'GHkjheeb453',
         'valid_password': True
@@ -39,12 +42,12 @@ test_data = [
         'user': 'körte',
         'email': 'cs@g.gl',
         'valid_email': True,
-        'password': '',
+        'password': '',  # empty password
         'valid_password': False
     },
     {
         'user': 'alma',
-        'email': 'cs@g.g',
+        'email': 'cs@g.g',  # invalid email
         'valid_email': False,
         'password': 'GHkjheeb453',
         'valid_password': True
@@ -58,20 +61,19 @@ test_data = [
     },
     {
         'user': 'alma',
-        'email': 'cs@g.ga',
+        'email': 'a@b.cd',
         'valid_email': True,
-        'password': 'zokni',
+        'password': 'zokni',  # invalid password
         'valid_password': False
     },
     {
         'user': 'alma',
-        'email': 'cs@g.ga',
+        'email': 'cs@g.he',
         'valid_email': True,
-        'password': 'zokni',
-        'valid_password': False
+        'password': 'Zoknipár1',
+        'valid_password': True
     }
 ]
-
 responses = {
     'empty_username': 'Registration failed! Username field required.',
     'empty_email': 'Registration failed! Email field required.',
@@ -83,7 +85,6 @@ responses = {
     'success': 'Welcome! Your registration was successful!',
 }
 
-
 class TestRegistration(object):
     def setup_method(self):
         service = Service(executable_path=ChromeDriverManager().install())
@@ -91,7 +92,7 @@ class TestRegistration(object):
         options.add_experimental_option("detach", True)
         options.add_argument("--lang=en")
         self.browser = webdriver.Chrome(service=service, options=options)
-        self.browser.implicitly_wait(10)
+        # self.browser.implicitly_wait(10)
         URL = "http://localhost:1667/#/"
         self.browser.get(URL)
 
@@ -115,7 +116,8 @@ class TestRegistration(object):
         input_password.send_keys(password)
         submit_btn.click()
 
-        reg_result = find(By.XPATH, '//div[@class="swal-title"]').text
+        reg_result = WebDriverWait(self.browser, 5).until(
+            EC.presence_of_element_located((By.XPATH, '//div[@class="swal-title"]'))).text
         reg_info = find(By.XPATH, '//div[@class="swal-text"]').text
         confirm_btn = find(By.XPATH, '//button[@class="swal-button swal-button--confirm"]')
         confirm_btn.click()
