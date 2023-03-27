@@ -4,6 +4,4 @@ node_modules/
 src/public/js/app.js
 src/node_modules
 src/deno_dir
-..src/package-lock.json
-..src/yarn.lock
 
