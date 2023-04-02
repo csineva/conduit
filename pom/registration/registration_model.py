@@ -46,7 +46,6 @@ class RegistrationPage(GeneralPage):
         return WebDriverWait(self.driver, 5).until(
             EC.presence_of_element_located((By.XPATH, '//button[@class="swal-button swal-button--confirm"]')))
 
-
     def query_db(self, sql):
         conn = pg.connect("dbname='realworld' user='user' password='userpassword' host='localhost' port='54320'")
         cur = conn.cursor()
