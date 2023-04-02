@@ -1,0 +1,6 @@
+user,email,password,expected_result,expected_info
+,a@bcd,Abcdefgh1,Registration failed!,Username field required.
+alma,,Gkjdhfreksdj1,Registration failed!,Email field required.
+alma,a@b.c,Jlkdjdkfjgvh5,Registration failed!,Email must be a valid email.
+körte,a@b.cd,,Registration failed!,Password field required.
+alma,a@b.cd,zokni,Registration failed!,"Password must be 8 characters long and include 1 number, 1 uppercase letter, and 1 lowercase letter."
