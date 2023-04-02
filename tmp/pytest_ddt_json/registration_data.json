@@ -17,8 +17,8 @@
       "user": "körte",
       "email": "cs@g.gl",
       "valid_email": 1,
-      "password": "",
-      "valid_password": 0
+      "password":"",
+      "valid_password": 0,
     },
     {
       "user": "alma",
