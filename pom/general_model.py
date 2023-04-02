@@ -1,6 +1,7 @@
 from selenium import webdriver
 from datetime import datetime
 
+
 class GeneralPage:
 
     def __init__(self, driver: webdriver.Chrome, url):
@@ -9,7 +10,7 @@ class GeneralPage:
 
     def open(self):
         self.driver.get(self.url)
-        self.driver.maximize_window()
+        # self.driver.maximize_window()
 
     def close(self):
         self.driver.close()
@@ -22,8 +23,6 @@ class GeneralPage:
 
     def save_screen(self, path):
         filename = f'{self.driver.title}-{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}.png'
-        print(f'Screenshot attempt: {path}\\{filename}') # path\filename.png --> C:\screenshots\filename.png
+        print(f'Screenshot attempt: {path}\\{filename}')  # path\filename.png --> C:\screenshots\filename.png
         if not self.driver.save_screenshot(f'{path}\\{filename}'):
             print('Screenshot failed.')
-
-
