@@ -51,7 +51,7 @@ class TestRegistration:
         assert self.page.registration_info() == "Email already taken."
 
     def test_signup_with_invalid_data(self):
-        with open('.test/data.csv', 'r', encoding='UTF-8') as file:
+        with open('./test/data.csv', 'r', encoding='UTF-8') as file:
             testdata = csv.reader(file)
             next(testdata)
             for row in testdata:
