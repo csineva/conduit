@@ -1,7 +1,7 @@
 import allure
 import csv
 import bcrypt
-import pom.configuration as config
+import configuration as config
 from registration_model import RegistrationPage
 
 valid_user = {
