@@ -1,3 +1,4 @@
+import allure
 import csv
 import bcrypt
 import pom.configuration as config
@@ -5,7 +6,7 @@ from registration_model import RegistrationPage
 
 valid_user = {
     'username': 'Béla',
-    'email': 'abc@abcd.bc',
+    'email': 'abc@abcd1.bc',
     'password': 'HJkksdfjdvb4'
 }
 
@@ -20,6 +21,7 @@ class TestRegistration:
     def teardown_method(self):
         self.page.close()
 
+    # @allure
     def test_signup_page_loaded(self):
         assert self.page.signup_page_loaded() == 'Sign up'
 
