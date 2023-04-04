@@ -1,6 +1,6 @@
 import psycopg2 as pg
 
-from pom.general_model import GeneralPage
+from general_model import GeneralPage
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
