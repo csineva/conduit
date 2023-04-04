@@ -51,7 +51,7 @@ class TestRegistration:
         assert self.page.registration_info() == "Email already taken."
 
     def test_signup_with_invalid_data(self):
-        with open('./test/data.csv', 'r', encoding='UTF-8') as file:
+        with open('data.csv', 'r', encoding='UTF-8') as file:
             testdata = csv.reader(file)
             next(testdata)
             for row in testdata:
@@ -62,3 +62,5 @@ class TestRegistration:
                 assert self.page.registration_result() == row[3]
                 assert self.page.registration_info() == row[4]
                 self.page.confirm_button().click()
+        with open('alma.txt', "w") as f:
+            f.write("alma")
