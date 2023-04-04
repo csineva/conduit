@@ -62,5 +62,5 @@ class TestRegistration:
                 assert self.page.registration_result() == row[3]
                 assert self.page.registration_info() == row[4]
                 self.page.confirm_button().click()
-        with open('alma.txt', "w") as f:
+        with open('./alma.txt', "w") as f:
             f.write("alma")
