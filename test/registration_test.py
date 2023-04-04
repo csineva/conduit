@@ -50,15 +50,15 @@ class TestRegistration:
         assert self.page.registration_result() == "Registration failed!"
         assert self.page.registration_info() == "Email already taken."
 
-    # def test_signup_with_invalid_data(self):
-    #     with open('test_data.csv', 'r', encoding='UTF-8') as file:
-    #         testdata = csv.reader(file)
-    #         next(testdata)
-    #         for row in testdata:
-    #             self.page.input_username().send_keys(row[0])
-    #             self.page.input_email().send_keys(row[1])
-    #             self.page.input_password().send_keys(row[2])
-    #             self.page.submit_button().click()
-    #             assert self.page.registration_result() == row[3]
-    #             assert self.page.registration_info() == row[4]
-    #             self.page.confirm_button().click()
+    def test_signup_with_invalid_data(self):
+        with open('.test_data.csv', 'r', encoding='UTF-8') as file:
+            testdata = csv.reader(file)
+            next(testdata)
+            for row in testdata:
+                self.page.input_username().send_keys(row[0])
+                self.page.input_email().send_keys(row[1])
+                self.page.input_password().send_keys(row[2])
+                self.page.submit_button().click()
+                assert self.page.registration_result() == row[3]
+                assert self.page.registration_info() == row[4]
+                self.page.confirm_button().click()
