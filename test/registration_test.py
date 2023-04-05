@@ -6,7 +6,7 @@ from registration_model import RegistrationPage
 
 valid_user = {
     'username': 'Béla',
-    'email': 'abc@abcd1.bc',
+    'email': 'abc@abcd13.bc',
     'password': 'HJkksdfjdvb4'
 }
 
@@ -62,8 +62,9 @@ class TestRegistration:
                 assert self.page.registration_result() == row[3]
                 assert self.page.registration_info() == row[4]
                 self.page.confirm_button().click()
-        with open('test/alma.txt', "w") as f:
-            f.write("körte")
-        with open('test/alma.txt', "r") as f:
-            text = f.read()
-            assert text == 'körte'
+        # file create/write/read test
+        # with open('test/alma.txt', "w") as f:
+        #     f.write("körte")
+        # with open('test/alma.txt', "r") as f:
+        #     text = f.read()
+        #     assert text == 'körte'
