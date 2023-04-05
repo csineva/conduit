@@ -1,0 +1,6 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Apr 05 05:03:22 GMT 2023","Wed Apr 05 05:03:22 GMT 2023","81","test","registration_test","TestRegistration","","","test_valid_signup_on_backend",""
+"passed","Wed Apr 05 05:03:23 GMT 2023","Wed Apr 05 05:03:24 GMT 2023","780","test","registration_test","TestRegistration","","","test_signup_with_registered_email",""
+"passed","Wed Apr 05 05:03:17 GMT 2023","Wed Apr 05 05:03:17 GMT 2023","21","test","registration_test","TestRegistration","","","test_signup_page_loaded",""
+"passed","Wed Apr 05 05:03:25 GMT 2023","Wed Apr 05 05:03:29 GMT 2023","3806","test","registration_test","TestRegistration","","","test_signup_with_invalid_data",""
+"passed","Wed Apr 05 05:03:18 GMT 2023","Wed Apr 05 05:03:20 GMT 2023","2325","test","registration_test","TestRegistration","","","test_signup_with_valid_data",""
