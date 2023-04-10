@@ -1,11 +1,11 @@
 """
-                        GeneralPage -------------------
-                             |                        |
-                   -- ConduitMainPage --         PrivacyPolicy
-                  |                    |
-             SignInPage         LoggedInUserPage
-                 |                    |
-         RegistrationPage      LoggedInMainPage
+                              GeneralPage
+                                   |
+               ----------- ConduitMainPage ---------------
+              |                   |                      |
+         SignInPage        LoggedInUserPage        PrivacyPolicy
+             |                   |
+     RegistrationPage     LoggedInMainPage
 """
 
 
@@ -90,10 +90,7 @@ class RegistrationPage(SignInPage):
         return self.wait().until(self.ECpoel((By.XPATH, '//input[@placeholder="Username"]')))
 
 
-class PrivacyPolicy(GeneralPage):
-
-    def __init__(self, driver: webdriver.Chrome):
-        super().__init__(driver, url='http://localhost:1667/#/')
+class PrivacyPolicy(ConduitMainPage):
 
     def cookie_panel(self) -> WebElement:
         return self.driver.find_element(By.ID, "cookie-policy-panel")
