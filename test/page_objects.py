@@ -1,5 +1,16 @@
+"""
+                        GeneralPage -------------------
+                             |                        |
+                   -- ConduitMainPage --         PrivacyPolicy
+                  |                    |
+             SignInPage         LoggedInUserPage
+                 |                    |
+         RegistrationPage      LoggedInMainPage
+"""
+
+
+
 from selenium import webdriver
-# from selenium.webdriver import Chrome
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
