@@ -1,0 +1,10 @@
+user,email,password,expected_result,expected_info,flag
+Elek,a@b2.cd,HJkksdfjdvb4,Welcome!,Your registration was successful!,valid_user
+,a@bcd,Abcdefgh1,Registration failed!,Username field required.,invalid_user
+alma,,Gkjdhfreksdj1,Registration failed!,Email field required.,invalid_user
+szilva,b@b.c,Jlkdjdkfjgvh5,Registration failed!,Email must be a valid email.,invalid_user
+körte,c@b.cd,,Registration failed!,Password field required., invalid_user
+barack,d@b.cd,zokni,Registration failed!,"Password must be 8 characters long and include 1 number, 1 uppercase letter, and 1 lowercase letter.",invalid_user
+alma,,Gkjdhfreksdj1,Login failed!,Email field required.,invalid_login
+szilva,b@b.c,Jlkdjdkfjgvh5,Login failed!,Email must be a valid email.,invalid_login
+,abc@abcd2.bc,wrongpass,Login failed!,Invalid user credentials.,invalid_login
