@@ -47,7 +47,6 @@ class TestRegistration:
             # active_user["email"] = email
             # active_user["password"] = password
 
-
     @allure.id("ATC-03")
     @allure.title("Ellenőrizzük, hogy a sikeres regisztráció adatai rögzítésre kerültek az adatbázisban")
     def test_valid_signup_data_in_database(self):
