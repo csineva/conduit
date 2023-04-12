@@ -176,7 +176,7 @@ class TestLoggedInUserPage:
         user_login(self.page, user["email"], user["password"])
         assert self.page.logout_link().is_displayed()
         self.page.signed_in_menu(3).click()
-        time.sleep(2)
+        time.sleep(3)
 
     def teardown_method(self):
         self.page.close()
