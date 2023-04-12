@@ -204,10 +204,11 @@ class TestLoggedInUserPage:
         articles = len(self.page.articles_titles())
         for index in range(articles):
             self.page.articles_titles()[0].click()
+            time.sleep(1)
             self.page.delete_article_button().click()
             time.sleep(1)
             self.page.signed_in_menu(3).click()
-            time.sleep(2)
+            time.sleep(3)
         self.page.refresh()
         assert self.page.no_articles_yet().text == "No articles are here... yet."
 
