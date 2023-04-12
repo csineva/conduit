@@ -1,0 +1,29 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Apr 12 12:13:20 GMT 2023","Wed Apr 12 12:13:20 GMT 2023","215","test","conduit_test","TestLoggedInMainPage","","","Checking page list traversal",""
+"passed","Wed Apr 12 12:12:59 GMT 2023","Wed Apr 12 12:13:00 GMT 2023","866","test","conduit_test","TestRegistration","","","Sign up with already registered user data",""
+"passed","Wed Apr 12 12:12:53 GMT 2023","Wed Apr 12 12:12:56 GMT 2023","3333","test","conduit_test","TestRegistration","","","Sign up with valid user data","Registered user:
+Username: TesztElek
+E-mail: test@elek.hu
+Password: HJkksdfjdvb4"
+"passed","Wed Apr 12 12:12:58 GMT 2023","Wed Apr 12 12:12:58 GMT 2023","107","test","conduit_test","TestRegistration","","","Checking sign up data stored in database",""
+"passed","Wed Apr 12 12:13:23 GMT 2023","Wed Apr 12 12:13:23 GMT 2023","183","test","conduit_test","TestLoggedInMainPage","","","Listing all article titles","List of articles: 
+Lorem ipsum dolor sit amet
+In nisl nisi scelerisque eu
+Urna nunc id cursus metus.
+Egestas egestas
+Laoreet suspendisse interdum
+Nibh praesent tristique magna
+Eget mi proin sed libero
+Nunc lobortis mattis aliquam
+Cras sed felis eget velit
+Elementum facilisis leo vel fringilla
+Mi eget mauris pharetra et
+"
+"broken","Wed Apr 12 12:13:40 GMT 2023","Wed Apr 12 12:13:46 GMT 2023","6215","test","conduit_test","TestLoggedInUserPage","","","Modifying article",""
+"passed","Wed Apr 12 12:13:28 GMT 2023","Wed Apr 12 12:13:35 GMT 2023","7491","test","conduit_test","TestLoggedInUserPage","","","Creating articles from csv file","Created articles:
+Testarticle title1 ,Testarticle title2 ,Testarticle title3"
+"passed","Wed Apr 12 12:13:02 GMT 2023","Wed Apr 12 12:13:06 GMT 2023","4153","test","conduit_test","TestRegistration","","","Sign up with invalid user data",""
+"passed","Wed Apr 12 12:13:16 GMT 2023","Wed Apr 12 12:13:17 GMT 2023","586","test","conduit_test","TestPrivacyPolicy","","","Checking Privacy Policy","After clicking on 'Accept' button cookie panel disappears."
+"passed","Wed Apr 12 12:13:51 GMT 2023","Wed Apr 12 12:14:04 GMT 2023","12551","test","conduit_test","TestLoggedInUserPage","","","Deleting all created articles",""
+"passed","Wed Apr 12 12:13:07 GMT 2023","Wed Apr 12 12:13:12 GMT 2023","4486","test","conduit_test","TestSignIn","","","Sign in with invalid user data",""
+"passed","Wed Apr 12 12:13:13 GMT 2023","Wed Apr 12 12:13:15 GMT 2023","1430","test","conduit_test","TestSignIn","","","Sign in and sign out with valid user data",""
