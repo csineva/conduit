@@ -186,6 +186,7 @@ class TestLoggedInUserPage:
     def test_creating_articles(self):
         titles = create_articles_from_file(self.page)
         self.page.signed_in_menu(3).click()
+        time.sleep(2)
         for index, title in enumerate(titles):
             assert self.page.articles_titles()[index].text == title
         allure.dynamic.description(f"Created articles:\n{' ,'.join(titles)}")
@@ -207,6 +208,7 @@ class TestLoggedInUserPage:
             time.sleep(1)
             self.page.signed_in_menu(3).click()
             time.sleep(2)
+        self.page.refresh()
         assert self.page.no_articles_yet().text == "No articles are here... yet."
 
 
