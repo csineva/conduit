@@ -114,7 +114,10 @@ class LoggedInUserPage(SignInPage):
     def articles_favorite_buttons(self) -> WebElement:
         return self.wait().until(self.ECpoels((By.XPATH, "div[@class='article-meta']/button")))
 
-    # creating articles section
+    def no_articles_yet(self) -> WebElement:
+        return self.wait().until(self.ECpoel((By.XPATH, "//div[@class='article-preview']")))
+
+    # creating/modifying/delete articles section
     def new_article_link(self) -> WebElement:
         return self.wait().until(self.ECpoels((By.XPATH, '//li[@class="nav-item"]/a')))[1]
 
