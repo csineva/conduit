@@ -82,7 +82,7 @@ def modify_title(page):
     page.publish_button().click()
     time.sleep(1)
     page.signed_in_menu(3).click()
-    time.sleep(1)
+    time.sleep(3)
     return reversed_title
 
 
