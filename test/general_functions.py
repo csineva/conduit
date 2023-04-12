@@ -9,6 +9,7 @@ def user_registration(page, username, email, password):
     page.input_email().send_keys(email)
     page.input_password().send_keys(password)
     page.submit_button().click()
+    time.sleep(.5)
 
 
 def user_login(page, username, password):
@@ -79,6 +80,7 @@ def modify_title(page):
     page.article_title().clear()
     page.article_title().send_keys(reversed_title)
     page.publish_button().click()
+    time.sleep(1)
     page.signed_in_menu(3).click()
     time.sleep(1)
     return reversed_title
