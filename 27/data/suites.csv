@@ -1,0 +1,28 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Apr 12 11:50:48 GMT 2023","Wed Apr 12 11:50:48 GMT 2023","222","test","conduit_test","TestLoggedInMainPage","","","Checking page list traversal",""
+"passed","Wed Apr 12 11:50:27 GMT 2023","Wed Apr 12 11:50:27 GMT 2023","91","test","conduit_test","TestRegistration","","","Checking sign up data stored in database",""
+"passed","Wed Apr 12 11:50:29 GMT 2023","Wed Apr 12 11:50:29 GMT 2023","901","test","conduit_test","TestRegistration","","","Sign up with already registered user data",""
+"passed","Wed Apr 12 11:50:31 GMT 2023","Wed Apr 12 11:50:34 GMT 2023","3405","test","conduit_test","TestRegistration","","","Sign up with invalid user data",""
+"failed","Wed Apr 12 11:50:56 GMT 2023","Wed Apr 12 11:51:01 GMT 2023","5485","test","conduit_test","TestLoggedInUserPage","","","Creating articles from csv file",""
+"failed","Wed Apr 12 11:51:15 GMT 2023","Wed Apr 12 11:51:27 GMT 2023","12235","test","conduit_test","TestLoggedInUserPage","","","Deleting all created articles",""
+"passed","Wed Apr 12 11:50:51 GMT 2023","Wed Apr 12 11:50:51 GMT 2023","183","test","conduit_test","TestLoggedInMainPage","","","Listing all article titles","List of articles: 
+Lorem ipsum dolor sit amet
+In nisl nisi scelerisque eu
+Urna nunc id cursus metus.
+Egestas egestas
+Laoreet suspendisse interdum
+Nibh praesent tristique magna
+Eget mi proin sed libero
+Nunc lobortis mattis aliquam
+Cras sed felis eget velit
+Elementum facilisis leo vel fringilla
+Mi eget mauris pharetra et
+"
+"passed","Wed Apr 12 11:51:06 GMT 2023","Wed Apr 12 11:51:10 GMT 2023","4163","test","conduit_test","TestLoggedInUserPage","","","Modifying article",""
+"passed","Wed Apr 12 11:50:44 GMT 2023","Wed Apr 12 11:50:45 GMT 2023","585","test","conduit_test","TestPrivacyPolicy","","","Checking Privacy Policy","After clicking on 'Accept' button cookie panel disappears."
+"passed","Wed Apr 12 11:50:23 GMT 2023","Wed Apr 12 11:50:25 GMT 2023","2739","test","conduit_test","TestRegistration","","","Sign up with valid user data","Registered user:
+Username: TesztElek
+E-mail: test@elek.hu
+Password: HJkksdfjdvb4"
+"passed","Wed Apr 12 11:50:42 GMT 2023","Wed Apr 12 11:50:43 GMT 2023","1428","test","conduit_test","TestSignIn","","","Sign in and sign out with valid user data",""
+"passed","Wed Apr 12 11:50:36 GMT 2023","Wed Apr 12 11:50:40 GMT 2023","4467","test","conduit_test","TestSignIn","","","Sign in with invalid user data",""
