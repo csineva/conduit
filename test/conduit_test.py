@@ -176,7 +176,7 @@ class TestLoggedInUserPage:
         user_login(self.page, user["email"], user["password"])
         assert self.page.logout_link().is_displayed()
         self.page.signed_in_menu(3).click()
-        time.sleep(1)
+        time.sleep(2)
 
     def teardown_method(self):
         self.page.close()
@@ -184,10 +184,11 @@ class TestLoggedInUserPage:
     @allure.id("ATC-10")
     @allure.title("Creating articles from csv file")
     def test_creating_articles(self):
-        article_titles = create_articles_from_file(self.page)
+        titles = create_articles_from_file(self.page)
         self.page.signed_in_menu(3).click()
-        for index, article_title in enumerate(article_titles):
-            assert self.page.articles_titles()[index].text == article_title
+        for index, title in enumerate(titles):
+            assert self.page.articles_titles()[index].text == title
+        allure.dynamic.description(f"Created articles:\n{' ,'.join(titles)}")
 
     @allure.id("ATC-11")
     @allure.title("Modifying article")
@@ -199,16 +200,14 @@ class TestLoggedInUserPage:
     @allure.title("Deleting all created articles")
     def test_deleting_articles(self):
         self.page.refresh()
-        try:
-            articles = len(self.page.articles_titles())
-        except TimeoutException:
-            articles = 0
+        articles = len(self.page.articles_titles())
         for index in range(articles):
             self.page.articles_titles()[0].click()
             self.page.delete_article_button().click()
             time.sleep(1)
             self.page.signed_in_menu(3).click()
-            time.sleep(1)
+            time.sleep(2)
+        assert self.page.no_articles_yet().text == "No articles are here... yet."
 
 
 
