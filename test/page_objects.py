@@ -166,7 +166,7 @@ class LoggedInUserPage(SignInPage):
         return self.wait().until(self.ECpoel((By.XPATH, '//button[@type="submit"]')))
 
     def modify_article_link(self) -> WebElement:
-        return self.wait().until(self.ECpoel((By.XPATH, '//a[@class="btn btn-sm btn-outline-secondary"]')))
+        return self.wait().until(EC.element_to_be_clickable((By.XPATH, '//a[@class="btn btn-sm btn-outline-secondary"]')))
 
     def delete_article_button(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, '//button[@class="btn btn-outline-danger btn-sm"]')))
