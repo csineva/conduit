@@ -188,7 +188,6 @@ class TestLoggedInUserPage:
         titles = create_articles_from_file(self.page)
         self.page.signed_in_menu().click()
         self.page.my_articles().click()
-        self.page.refresh()
         for index, title in enumerate(titles):
             assert self.page.articles_titles()[index].text == title
         allure.dynamic.description(f"Created articles:\n{' ,'.join(titles)}")
@@ -197,7 +196,9 @@ class TestLoggedInUserPage:
     @allure.title("Modifying article")
     def test_modifying_article(self):
         self.page.my_articles().click()
+        self.page.refresh()
         modified_title = modify_title(self.page)
+        self.page.my_articles().click()
         assert self.page.articles_titles()[-1].text == modified_title
 
     @allure.id("ATC-12")
