@@ -9,7 +9,6 @@ def user_registration(page, username, email, password):
     page.input_email().send_keys(email)
     page.input_password().send_keys(password)
     page.submit_button().click()
-    time.sleep(.5)
 
 
 def user_login(page, username, password):
@@ -18,15 +17,16 @@ def user_login(page, username, password):
     page.input_password().clear()
     page.input_password().send_keys(password)
     page.submit_button().click()
-    time.sleep(1)
 
-# get flag-base filtered user data
+
+# get flag-based filtered user data
 def get_users_from_file(userflag):
     with open('test/users_data.csv', 'r', encoding='UTF-8') as datafile:
         users = list(csv.reader(datafile))
         for user in users:
             if user[5] == userflag:
                 yield user
+
 
 # active user will be used through all tests
 def set_active_user(username, email, password):
@@ -67,22 +67,20 @@ def create_articles_from_file(page):
             page.article_body().send_keys(article[2])
             page.article_tags().send_keys(article[3])
             page.publish_button().click()
-            time.sleep(1)
+            page.signed_in_menu().click()
+            page.my_articles().click()
     return article_titles
 
 
 def modify_title(page):
-    page.articles_titles()[0].click()
-    time.sleep(1)
+    page.first_article_title().click()
     page.modify_article_link().click()
     page.article_title().click()
     reversed_title = page.article_title().get_attribute('value')[::-1]
     page.article_title().clear()
     page.article_title().send_keys(reversed_title)
     page.publish_button().click()
-    time.sleep(1)
-    page.signed_in_menu(3).click()
-    time.sleep(3)
+    page.signed_in_menu().click()
     return reversed_title
 
 
