@@ -1,0 +1,29 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Apr 13 11:59:58 GMT 2023","Thu Apr 13 12:00:01 GMT 2023","3159","test","conduit_test","TestRegistration","","","Sign up with invalid user data",""
+"passed","Thu Apr 13 12:00:30 GMT 2023","Thu Apr 13 12:00:36 GMT 2023","5721","test","conduit_test","TestLoggedInUserPage","","","Deleting all created articles",""
+"passed","Thu Apr 13 12:00:05 GMT 2023","Thu Apr 13 12:00:06 GMT 2023","872","test","conduit_test","TestSignIn","","","Sign in and sign out with valid user data",""
+"passed","Thu Apr 13 11:59:50 GMT 2023","Thu Apr 13 11:59:53 GMT 2023","3111","test","conduit_test","TestRegistration","","","Sign up with valid user data","Registered user:
+Username: TesztElek
+E-mail: test@elek.hu
+Password: HJkksdfjdvb4"
+"passed","Thu Apr 13 11:59:55 GMT 2023","Thu Apr 13 11:59:55 GMT 2023","76","test","conduit_test","TestRegistration","","","Checking sign up data stored in database",""
+"passed","Thu Apr 13 12:00:07 GMT 2023","Thu Apr 13 12:00:07 GMT 2023","568","test","conduit_test","TestPrivacyPolicy","","","Checking Privacy Policy","After clicking on 'Accept' button cookie panel disappears."
+"broken","Thu Apr 13 12:00:22 GMT 2023","Thu Apr 13 12:00:28 GMT 2023","6023","test","conduit_test","TestLoggedInUserPage","","","Modifying article",""
+"passed","Thu Apr 13 12:00:14 GMT 2023","Thu Apr 13 12:00:20 GMT 2023","6133","test","conduit_test","TestLoggedInUserPage","","","Creating articles from csv file","Created articles:
+Testarticle title1 ,Testarticle title2 ,Testarticle title3"
+"passed","Thu Apr 13 12:00:11 GMT 2023","Thu Apr 13 12:00:12 GMT 2023","130","test","conduit_test","TestLoggedInMainPage","","","Listing all article titles","List of articles: 
+Lorem ipsum dolor sit amet
+In nisl nisi scelerisque eu
+Urna nunc id cursus metus.
+Egestas egestas
+Laoreet suspendisse interdum
+Nibh praesent tristique magna
+Eget mi proin sed libero
+Nunc lobortis mattis aliquam
+Cras sed felis eget velit
+Elementum facilisis leo vel fringilla
+Mi eget mauris pharetra et
+"
+"passed","Thu Apr 13 12:00:02 GMT 2023","Thu Apr 13 12:00:03 GMT 2023","1133","test","conduit_test","TestSignIn","","","Sign in with invalid user data",""
+"passed","Thu Apr 13 11:59:56 GMT 2023","Thu Apr 13 11:59:57 GMT 2023","797","test","conduit_test","TestRegistration","","","Sign up with already registered user data",""
+"passed","Thu Apr 13 12:00:09 GMT 2023","Thu Apr 13 12:00:09 GMT 2023","183","test","conduit_test","TestLoggedInMainPage","","","Checking page list traversal",""
