@@ -37,7 +37,7 @@ class TestRegistration:
         for user in get_users_from_file("valid_user"):
             username, email, password, expected_result, expected_info, *_ = user
             user_registration(self.page, username, email, password)
-            assert self.page.result() == expected_result
+            assert self.page.result_registration_passed() == expected_result
             assert self.page.info() == expected_info
             set_active_user(username, email, password)
             allure.dynamic.description(f'Registered user:\nUsername: {username}\nE-mail: {email}\nPassword: {password}')
@@ -61,7 +61,7 @@ class TestRegistration:
         for user in get_users_from_file("valid_user"):
             username, email, password, *_ = user
             user_registration(self.page, username, email, password)
-            assert self.page.result() == "Registration failed!"
+            assert self.page.result_registration_failed() == "Registration failed!"
             assert self.page.info() == "Email already taken."
 
     @allure.id("ATC-04")
@@ -70,7 +70,7 @@ class TestRegistration:
         for user in get_users_from_file("invalid_user"):
             username, email, password, expected_result, expected_info, *_ = user
             user_registration(self.page, username, email, password)
-            assert self.page.result() == expected_result
+            assert self.page.result_registration_failed() == expected_result
             assert self.page.info() == expected_info
             self.page.confirm_button().click()
 
@@ -94,7 +94,7 @@ class TestSignIn:
             _, email, password, expected_result, expected_info, *_ = user
             user_login(self.page, email, password)
             time.sleep(0.1)
-            assert self.page.result() == expected_result
+            assert self.page.result_sign_in_failed() == expected_result
             assert self.page.info() == expected_info
             self.page.confirm_button().click()
 
@@ -103,7 +103,7 @@ class TestSignIn:
     def test_sign_out(self):
         user = get_active_user()
         user_login(self.page, user["email"], user["password"])
-        assert self.page.signed_in_menu(3).text == user["username"]
+        assert self.page.signed_in_menu().text == user["username"]
         assert self.page.logout_link().is_displayed()
         self.page.logout_link().click()
         assert self.page.sign_in_link().is_displayed()
@@ -175,8 +175,7 @@ class TestLoggedInUserPage:
         user = get_active_user()
         user_login(self.page, user["email"], user["password"])
         assert self.page.logout_link().is_displayed()
-        self.page.signed_in_menu(3).click()
-        time.sleep(3)
+        self.page.signed_in_menu().click()
 
     def teardown_method(self):
         self.page.close()
@@ -184,9 +183,11 @@ class TestLoggedInUserPage:
     @allure.id("ATC-10")
     @allure.title("Creating articles from csv file")
     def test_creating_articles(self):
+        self.page.my_articles().click()
         titles = create_articles_from_file(self.page)
-        self.page.signed_in_menu(3).click()
-        time.sleep(2)
+        self.page.signed_in_menu().click()
+        self.page.my_articles().click()
+        self.page.refresh()
         for index, title in enumerate(titles):
             assert self.page.articles_titles()[index].text == title
         allure.dynamic.description(f"Created articles:\n{' ,'.join(titles)}")
@@ -194,21 +195,23 @@ class TestLoggedInUserPage:
     @allure.id("ATC-11")
     @allure.title("Modifying article")
     def test_modifying_article(self):
+        self.page.my_articles().click()
         modified_title = modify_title(self.page)
         assert self.page.articles_titles()[-1].text == modified_title
 
     @allure.id("ATC-12")
     @allure.title("Deleting all created articles")
     def test_deleting_articles(self):
+        self.page.my_articles().click()
         self.page.refresh()
         articles = len(self.page.articles_titles())
         for index in range(articles):
-            self.page.articles_titles()[0].click()
-            time.sleep(3)
+            self.page.my_articles().click()
+            self.page.first_article_title().click()
             self.page.delete_article_button().click()
-            time.sleep(1)
-            self.page.signed_in_menu(3).click()
-            time.sleep(3)
+            self.page.refresh()
+            self.page.signed_in_menu().click()
+            self.page.my_articles().click()
         self.page.refresh()
         assert self.page.no_articles_yet().text == "No articles are here... yet."
 
