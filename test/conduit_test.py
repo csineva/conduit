@@ -122,7 +122,7 @@ class TestPrivacyPolicy:
     def test_cookie_accept(self):
         assert self.page.cookie_panel().is_displayed()
         self.page.cookie_accept().click()
-        time.sleep(.5)
+        self.page.refresh()
         try:
             assert self.page.cookie_panel().is_displayed()
         except NoSuchElementException:
