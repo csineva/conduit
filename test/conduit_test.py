@@ -184,6 +184,7 @@ class TestLoggedInUserPage:
     @allure.title("Creating articles from csv file")
     def test_creating_articles(self):
         self.page.my_articles().click()
+        self.page.refresh()
         titles = create_articles_from_file(self.page)
         self.page.signed_in_menu().click()
         self.page.my_articles().click()
