@@ -10,10 +10,9 @@
 # Adatok lementése felületről
 # (*) Kijelentkezés
 
-import time
 import allure
 import bcrypt
-from selenium.common import NoSuchElementException, TimeoutException
+from selenium.common import NoSuchElementException
 import configuration as config
 from page_objects import RegistrationPage, SignInPage, PrivacyPolicy, LoggedInMainPage, LoggedInUserPage
 from general_functions import *
@@ -176,6 +175,8 @@ class TestLoggedInUserPage:
         user_login(self.page, user["email"], user["password"])
         assert self.page.logout_link().is_displayed()
         self.page.signed_in_menu().click()
+        self.page.my_articles().click()
+        self.page.refresh()
 
     def teardown_method(self):
         self.page.close()
@@ -183,8 +184,6 @@ class TestLoggedInUserPage:
     @allure.id("ATC-10")
     @allure.title("Creating articles from csv file")
     def test_creating_articles(self):
-        self.page.my_articles().click()
-        self.page.refresh()
         titles = create_articles_from_file(self.page)
         self.page.signed_in_menu().click()
         self.page.my_articles().click()
@@ -195,8 +194,6 @@ class TestLoggedInUserPage:
     @allure.id("ATC-11")
     @allure.title("Modifying article")
     def test_modifying_article(self):
-        self.page.my_articles().click()
-        self.page.refresh()
         modified_title = modify_title(self.page)
         self.page.my_articles().click()
         assert self.page.articles_titles()[-1].text == modified_title
@@ -204,17 +201,7 @@ class TestLoggedInUserPage:
     @allure.id("ATC-12")
     @allure.title("Deleting all created articles")
     def test_deleting_articles(self):
-        self.page.my_articles().click()
-        self.page.refresh()
-        articles = len(self.page.articles_titles())
-        for index in range(articles):
-            self.page.my_articles().click()
-            self.page.first_article_title().click()
-            self.page.delete_article_button().click()
-            self.page.refresh()
-            self.page.signed_in_menu().click()
-            self.page.my_articles().click()
-        self.page.refresh()
+        delete_articles(self.page)
         assert self.page.no_articles_yet().text == "No articles are here... yet."
 
 
