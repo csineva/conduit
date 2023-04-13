@@ -9,7 +9,6 @@
 """
 
 from selenium import webdriver
-from selenium.common import ElementClickInterceptedException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -98,13 +97,8 @@ class SignInPage(GeneralPage):
     def signed_in_menu(self) -> WebElement:
         return self.wait().until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.nav-item:nth-child(4)')))
 
-    # def signed_in_menu2(self) -> WebElement:
-    #     return self.wait().until(EC.invisibility_of_element((By.CSS_SELECTOR, 'div .swal-modal')))
-    #     # return self.wait().until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.nav-item:nth-child(4)'))).click()
-
     def my_articles(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.LINK_TEXT, 'My Articles')))
-
 
     def logout_link(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, '//li/a[contains(text(), "Log out")]')))
@@ -123,8 +117,10 @@ class RegistrationPage(SignInPage):
         return self.wait().until(self.ECpoel((By.XPATH, '//div[@class="swal-title"]'))).text
 
     def result_registration_failed(self) -> WebElement:
-        self.wait().until(EC.text_to_be_present_in_element((By.XPATH, '//div[@class="swal-title"]'), 'Registration failed!'))
+        self.wait().until(
+            EC.text_to_be_present_in_element((By.XPATH, '//div[@class="swal-title"]'), 'Registration failed!'))
         return self.wait().until(self.ECpoel((By.XPATH, '//div[@class="swal-title"]'))).text
+
 
 class LoggedInUserPage(SignInPage):
 
@@ -166,7 +162,8 @@ class LoggedInUserPage(SignInPage):
         return self.wait().until(self.ECpoel((By.XPATH, '//button[@type="submit"]')))
 
     def modify_article_link(self) -> WebElement:
-        return self.wait().until(EC.element_to_be_clickable((By.XPATH, '//a[@class="btn btn-sm btn-outline-secondary"]')))
+        return self.wait().until(
+            EC.element_to_be_clickable((By.XPATH, '//a[@class="btn btn-sm btn-outline-secondary"]')))
 
     def delete_article_button(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, '//button[@class="btn btn-outline-danger btn-sm"]')))
