@@ -84,6 +84,18 @@ def modify_title(page):
     return reversed_title
 
 
+def delete_articles(page):
+    articles = len(page.articles_titles())
+    for index in range(articles):
+        page.my_articles().click()
+        page.first_article_title().click()
+        page.delete_article_button().click()
+        page.refresh()
+        page.signed_in_menu().click()
+        page.my_articles().click()
+    page.refresh()
+
+
 if __name__ == '__main__':
     # get_user("invalid_user")
     # update_active_user("bcc", "bcc", "ccc")
