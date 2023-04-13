@@ -9,6 +9,7 @@
 """
 
 from selenium import webdriver
+from selenium.common import ElementClickInterceptedException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -71,7 +72,8 @@ class SignInPage(GeneralPage):
     def submit_button(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, '//button[@class="btn btn-lg btn-primary pull-xs-right"]')))
 
-    def result(self) -> WebElement:
+    def result_sign_in_failed(self) -> WebElement:
+        self.wait().until(EC.text_to_be_present_in_element((By.XPATH, '//div[@class="swal-title"]'), 'Login failed!'))
         return self.wait().until(self.ECpoel((By.XPATH, '//div[@class="swal-title"]'))).text
 
     def info(self) -> WebElement:
@@ -80,12 +82,29 @@ class SignInPage(GeneralPage):
     def confirm_button(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, '//button[@class="swal-button swal-button--confirm"]')))
 
-    def signed_in_menu(self, index) -> WebElement | str:
-        return self.wait().until(self.ECpoels((By.XPATH, '//li[@class="nav-item"]/a')))[index]
+    # def signed_in_menu(self) -> WebElement:
+    #     return self.wait().until(self.ECpoel((By.CSS_SELECTOR, '.nav-item:nth-child(4)')))
+
+    # def signed_in_menu(self, index) -> WebElement | str:
+    #     return self.wait().until(self.ECpoels((By.XPATH, '//li[@class="nav-item"]/a')))[index]
 
     # no lag version
     # def signed_in_link(self) -> WebElement:
     #     return self.wait().until(self.ECpoel((By.XPATH, f'//li/a[contains(text(), "{active_user["username"]}")]'))).text
+    #
+    # def signed_in_menu_fluentwait(self) -> WebElement:
+    #     return WebDriverWait(self.driver, timeout=5, poll_frequency=1, ignored_exceptions=[ElementClickInterceptedException]).until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.nav-item:nth-child(4)')))
+
+    def signed_in_menu(self) -> WebElement:
+        return self.wait().until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.nav-item:nth-child(4)')))
+
+    # def signed_in_menu2(self) -> WebElement:
+    #     return self.wait().until(EC.invisibility_of_element((By.CSS_SELECTOR, 'div .swal-modal')))
+    #     # return self.wait().until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.nav-item:nth-child(4)'))).click()
+
+    def my_articles(self) -> WebElement:
+        return self.wait().until(self.ECpoel((By.LINK_TEXT, 'My Articles')))
+
 
     def logout_link(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, '//li/a[contains(text(), "Log out")]')))
@@ -99,6 +118,13 @@ class RegistrationPage(SignInPage):
     def input_username(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, '//input[@placeholder="Username"]')))
 
+    def result_registration_passed(self) -> WebElement:
+        self.wait().until(EC.text_to_be_present_in_element((By.XPATH, '//div[@class="swal-title"]'), 'Welcome!'))
+        return self.wait().until(self.ECpoel((By.XPATH, '//div[@class="swal-title"]'))).text
+
+    def result_registration_failed(self) -> WebElement:
+        self.wait().until(EC.text_to_be_present_in_element((By.XPATH, '//div[@class="swal-title"]'), 'Registration failed!'))
+        return self.wait().until(self.ECpoel((By.XPATH, '//div[@class="swal-title"]'))).text
 
 class LoggedInUserPage(SignInPage):
 
@@ -107,6 +133,9 @@ class LoggedInUserPage(SignInPage):
 
     def articles_titles(self) -> WebElement | list:
         return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/h1")))
+
+    def first_article_title(self) -> WebElement | list:
+        return self.wait().until(self.ECpoel((By.XPATH, "//div/a/h1")))
 
     def articles_own_tags(self) -> WebElement:
         return self.wait().until(self.ECpoels((By.XPATH, "//a[@class='preview-link']/div/a")))
@@ -119,7 +148,7 @@ class LoggedInUserPage(SignInPage):
 
     # creating/modifying/delete articles section
     def new_article_link(self) -> WebElement:
-        return self.wait().until(self.ECpoels((By.XPATH, '//li[@class="nav-item"]/a')))[1]
+        return self.wait().until(self.ECpoel((By.CSS_SELECTOR, '.nav-item:nth-child(2)')))
 
     def article_title(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, '//input[@placeholder="Article Title"]')))
