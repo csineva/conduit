@@ -1,4 +1,3 @@
-import time
 import psycopg2 as pg
 import csv
 import json
@@ -11,9 +10,9 @@ def user_registration(page, username, email, password):
     page.submit_button().click()
 
 
-def user_login(page, username, password):
+def user_login(page, email, password):
     page.input_email().clear()
-    page.input_email().send_keys(username)
+    page.input_email().send_keys(email)
     page.input_password().clear()
     page.input_password().send_keys(password)
     page.submit_button().click()
@@ -52,6 +51,22 @@ def database_query(sql):
     rows = cur.fetchall()
     conn.close()
     return rows
+
+
+def save_articles_to_file(page, articles, abouts):
+    articles_length = len(articles)
+    with open("test/article_preview_from_mainpage.csv", "w", encoding="UTF-8") as article_file:
+        article_file.write("article title,article about\n")
+        for index in range(articles_length):
+            article_file.write(f'{articles[index].text},{abouts[index].text}\n')
+
+
+def load_articles_from_file():
+    with open("test/article_preview_from_mainpage.csv", "r", encoding="UTF-8") as article_file:
+        next(article_file)
+        articles = list(csv.reader(article_file))
+        for article in articles:
+            yield article
 
 
 def create_articles_from_file(page):
