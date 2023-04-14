@@ -127,14 +127,26 @@ class LoggedInUserPage(SignInPage):
     def user_articles_tabs(self, index) -> list:
         return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='articles-toggle']/ul/li/a")))[index]
 
+    def articles_main_page(self) -> WebElement | list:
+        return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a")))
+
     def articles_titles(self) -> WebElement | list:
         return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/h1")))
+
+    def articles_titles_main_page(self, index) -> WebElement | list:
+        return self.wait().until(self.ECpoels((By.XPATH, f"//div[@class='article-preview'][{index}]/a/h1")))
 
     def first_article_title(self) -> WebElement | list:
         return self.wait().until(self.ECpoel((By.XPATH, "//div/a/h1")))
 
-    def articles_own_tags(self) -> WebElement:
-        return self.wait().until(self.ECpoels((By.XPATH, "//a[@class='preview-link']/div/a")))
+    def articles_about(self) -> WebElement | list:
+        return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/p")))
+
+    def articles_own_tags(self, index) -> list:
+        return self.wait().until(self.ECpoels((By.XPATH, f"//div[@class='article-preview'][{index}]/a/div/a")))
+
+    # def articles_own_tags(self) -> WebElement:
+    #     return self.wait().until(self.ECpoels((By.XPATH, "//a[@class='preview-link']/div/a")))
 
     def articles_favorite_buttons(self) -> WebElement:
         return self.wait().until(self.ECpoels((By.XPATH, "div[@class='article-meta']/button")))
