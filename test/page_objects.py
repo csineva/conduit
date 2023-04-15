@@ -41,6 +41,7 @@ class GeneralPage:
 
 class PrivacyPolicy(GeneralPage):
     # class with cookie elements for testing the privacy policy
+
     def __init__(self, driver: webdriver.Chrome):
         super().__init__(driver, url='http://localhost:1667/#/')
 
@@ -53,6 +54,7 @@ class PrivacyPolicy(GeneralPage):
 
 class SignInPage(GeneralPage):
     # common elements for sign in function
+
     def __init__(self, driver: webdriver.Chrome):
         super().__init__(driver, url='http://localhost:1667/#/')
 
@@ -77,6 +79,7 @@ class SignInPage(GeneralPage):
 
 class SignInPageExtended(SignInPage):
     # Class derived from SignInPage with additional elements for testing sign in function
+
     def page_loaded(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.TAG_NAME, "h1"))).text
 
@@ -93,6 +96,7 @@ class SignInPageExtended(SignInPage):
 
 class RegistrationPage(SignInPageExtended):
     # Class derived from SignInPageExtended with additional elements for testing sign up function
+
     def sign_up_link(self) -> WebElement:
         return self.driver.find_element(By.LINK_TEXT, "Sign up")
 
@@ -111,33 +115,28 @@ class RegistrationPage(SignInPageExtended):
 
 class LoggedInPage(SignInPage):
     # Common elements of main page after successful log in
+
+    # def articles_favorite_buttons(self) -> list[WebElement]:
+    #     return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-meta']/button")))
+
+    # def articles_own_tags(self) -> list[WebElement]:
+    #     return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/div/a")))
+
     def articles_titles(self) -> list[WebElement]:
         return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/h1")))
 
-
-class LoggedInUserPage(LoggedInPage):
-    # Class derived from LoggedInPage with elements under user menu
-
-    # def user_articles_tabs(self, index) -> list:
-    #     return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='articles-toggle']/ul/li/a")))[index]
-
-    # def articles_main_page(self) -> WebElement | list:
-    #     return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a")))
-
-    # def articles_own_tags(self, index) -> list:
-    #     return self.wait().until(self.ECpoels((By.XPATH, f"//div[@class='article-preview'][{index}]/a/div/a")))
-
-    # def articles_favorite_buttons(self) -> WebElement:
-    #     return self.wait().until(self.ECpoels((By.XPATH, "div[@class='article-meta']/button")))
-
-    # def articles_titles_main_page(self, index) -> WebElement | list:
-    #     return self.wait().until(self.ECpoels((By.XPATH, f"//div[@class='article-preview'][{index}]/a/h1")))
-
-    def my_articles(self) -> WebElement:
-        return self.wait().until(self.ECpoel((By.LINK_TEXT, 'My Articles')))
+    def articles_abouts(self) -> list[WebElement]:
+        return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/p")))
 
     def first_article_title(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, "//div/a/h1")))
+
+
+class LoggedInUserPage(LoggedInPage):
+    # Class derived from LoggedInPage with elements of user menu
+
+    def my_articles(self) -> WebElement:
+        return self.wait().until(self.ECpoel((By.LINK_TEXT, 'My Articles')))
 
     def no_articles_yet(self) -> WebElement:
         return self.wait().until(self.ECpoel((By.XPATH, "//div[@class='article-preview']")))
@@ -172,14 +171,8 @@ class LoggedInUserPage(LoggedInPage):
 class LoggedInMainPage(LoggedInPage):
     # Class derived from LoggedInPage with additional elements of main page after successful log in
 
-    # def main_articles_tabs(self) -> WebElement:
-    #     return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='feed-toggle']/ul/li")))
-
-    # def popular_tags(self) -> list:
+    # def popular_tags(self) -> list[WebElement]:
     #     return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='sidebar']/div/a")))
-
-    def articles_about(self) -> list[WebElement]:
-        return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/p")))
 
     def pagination(self) -> list[WebElement]:
         return self.wait().until(self.ECpoels((By.XPATH, "//ul[@class='pagination']/li")))
