@@ -1,11 +1,11 @@
 """
                               GeneralPage -----------------
                                    |                      |
-               -------------- SignInPage             PrivacyPolicy
+     SignInPageExtended------- SignInPage             PrivacyPolicy
               |                   |
-      RegistrationPage     LoggedInUserPage
-                                 |
-                         LoggedInMainPage
+      RegistrationPage      LoggedInPage -----------------
+                                 |                       |
+                         LoggedInMainPage         LoggedInUserPage
 """
 
 from selenium import webdriver
@@ -80,7 +80,7 @@ class SignInPage(GeneralPage):
 class SignInPageExtended(SignInPage):
     # Class derived from SignInPage with additional elements for testing sign in function
 
-    def page_loaded(self) -> WebElement:
+    def page_loaded(self) -> str:
         return self.wait().until(self.ECpoel((By.TAG_NAME, "h1"))).text
 
     def result_sign_in_failed(self) -> str:
