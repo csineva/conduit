@@ -218,6 +218,7 @@ class TestLoggedInUserPage:
         original_title = self.page.articles_titles()[0].text
         modified_title = modify_title(self.page)
         self.page.my_articles().click()
+        self.page.refresh()
         assert self.page.articles_titles()[-1].text == modified_title
         allure.dynamic.description(f'Original title: {original_title}\nModified title: {modified_title}')
 
