@@ -116,16 +116,10 @@ class RegistrationPage(SignInPageExtended):
 class LoggedInPage(SignInPage):
     # Common elements of main page after successful log in
 
-    # def articles_favorite_buttons(self) -> list[WebElement]:
-    #     return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-meta']/button")))
-
-    # def articles_own_tags(self) -> list[WebElement]:
-    #     return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/div/a")))
-
     def articles_titles(self) -> list[WebElement]:
         return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/h1")))
 
-    def articles_abouts(self) -> list[WebElement]:
+    def articles_about(self) -> list[WebElement]:
         return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='article-preview']/a/p")))
 
     def first_article_title(self) -> WebElement:
@@ -170,9 +164,6 @@ class LoggedInUserPage(LoggedInPage):
 
 class LoggedInMainPage(LoggedInPage):
     # Class derived from LoggedInPage with additional elements of main page after successful log in
-
-    # def popular_tags(self) -> list[WebElement]:
-    #     return self.wait().until(self.ECpoels((By.XPATH, "//div[@class='sidebar']/div/a")))
 
     def pagination(self) -> list[WebElement]:
         return self.wait().until(self.ECpoels((By.XPATH, "//ul[@class='pagination']/li")))
