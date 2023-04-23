@@ -3,6 +3,7 @@ import csv
 import json
 
 
+# fills up the registration input fields, then submit
 def user_registration(page, username, email, password):
     page.input_username().send_keys(username)
     page.input_email().send_keys(email)
@@ -10,6 +11,7 @@ def user_registration(page, username, email, password):
     page.submit_button().click()
 
 
+# fills up the login input fields, then submit
 def user_login(page, email, password):
     page.input_email().clear()
     page.input_email().send_keys(email)
@@ -18,7 +20,7 @@ def user_login(page, email, password):
     page.submit_button().click()
 
 
-# get flag-based filtered user data
+# get flag-based filtered user data from file
 def get_users_from_file(userflag):
     with open('test/users_data.csv', 'r', encoding='UTF-8') as datafile:
         users = list(csv.reader(datafile))
@@ -27,7 +29,7 @@ def get_users_from_file(userflag):
                 yield user
 
 
-# active user will be used through all tests
+# save valid user data to file, active user will be used through all tests
 def set_active_user(username, email, password):
     user = {
         "username": username,
@@ -38,12 +40,14 @@ def set_active_user(username, email, password):
         userdata.write((json.dumps(user)))
 
 
+# returns with active user data from file
 def get_active_user():
     with open("test/active_user.json", "r", encoding="UTF-8") as userdata:
         user = json.load(userdata)
         return user
 
 
+# returns with sql query results from postgres database
 def database_query(sql):
     conn = pg.connect("dbname='realworld' user='user' password='userpassword' host='localhost' port='54320'")
     cur = conn.cursor()
@@ -53,7 +57,8 @@ def database_query(sql):
     return rows
 
 
-def save_articles_to_file(page, articles, abouts):
+# saves the article previews to file
+def save_articles_to_file(articles, abouts):
     articles_length = len(articles)
     with open("test/article_preview_from_mainpage.csv", "w", encoding="UTF-8") as article_file:
         article_file.write("article title,article about\n")
@@ -61,6 +66,7 @@ def save_articles_to_file(page, articles, abouts):
             article_file.write(f'{articles[index].text},{abouts[index].text}\n')
 
 
+# load the article previews from file
 def load_articles_from_file():
     with open("test/article_preview_from_mainpage.csv", "r", encoding="UTF-8") as article_file:
         next(article_file)
@@ -69,6 +75,7 @@ def load_articles_from_file():
             yield article
 
 
+# load some article test data from file and create articles
 def create_articles_from_file(page):
     article_titles = []
     with open("test/articles_data.csv", "r", encoding="UTF-8") as articles_file:
@@ -76,29 +83,31 @@ def create_articles_from_file(page):
         next(articles)
         for article in articles:
             article_titles.append(article[0])
-            page.new_article_link().click()
-            page.article_title().send_keys(article[0])
-            page.article_about().send_keys(article[1])
-            page.article_body().send_keys(article[2])
-            page.article_tags().send_keys(article[3])
+            page.create_article_link().click()
+            page.input_article_title().send_keys(article[0])
+            page.input_article_about().send_keys(article[1])
+            page.input_article_body().send_keys(article[2])
+            page.input_article_tags().send_keys(article[3])
             page.publish_button().click()
             page.signed_in_menu().click()
             page.my_articles().click()
     return article_titles
 
 
+# modifies the first article
 def modify_title(page):
     page.first_article_title().click()
     page.modify_article_link().click()
-    page.article_title().click()
-    reversed_title = page.article_title().get_attribute('value')[::-1]
-    page.article_title().clear()
-    page.article_title().send_keys(reversed_title)
+    page.input_article_title().click()
+    reversed_title = page.input_article_title().get_attribute('value')[::-1]
+    page.input_article_title().clear()
+    page.input_article_title().send_keys(reversed_title)
     page.publish_button().click()
     page.signed_in_menu().click()
     return reversed_title
 
 
+# delete all test articles created before
 def delete_articles(page):
     articles = len(page.articles_titles())
     for index in range(articles):
